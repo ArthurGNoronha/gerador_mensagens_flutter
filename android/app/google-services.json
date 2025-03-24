@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "410698936191",
+    "firebase_url": "https://mensagensmotivacionaisflutter-default-rtdb.firebaseio.com",
+    "project_id": "mensagensmotivacionaisflutter",
+    "storage_bucket": "mensagensmotivacionaisflutter.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:410698936191:android:37fa9485845a565fbef44a",
+        "android_client_info": {
+          "package_name": "com.abobrinha"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBcj3YQdOf4ZaaAcimzxp_2ZgzqTn6wi9s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
