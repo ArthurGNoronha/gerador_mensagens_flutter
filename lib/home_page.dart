@@ -13,20 +13,34 @@ class _HomePageState extends State<HomePage> {
   final database = FirebaseDatabase.instance.ref();
   String mensagem = "Clique para gerar uma mensagem!";
 
-  Future<void> buscarMensagem() async {
-    final snapshot = await database.child('mensagens').get();
-    if (snapshot.exists) {
-      final mensagens = Map<String, dynamic>.from(snapshot.value as dynamic);
-      final randomKey = mensagens.keys.elementAt(Random().nextInt(mensagens.length));
+Future<void> buscarMensagem() async {
+  final snapshot = await database.child('frases').get();
+  if (snapshot.exists) {
+    dynamic value = snapshot.value;
+    List<dynamic> mensagensList = [];
+    
+    if (value is Map) {
+      mensagensList = value.values.toList();
+    } else if (value is List) {
+      mensagensList = value;
+    }
+
+    if (mensagensList.isNotEmpty) {
+      final randomMessage = mensagensList[Random().nextInt(mensagensList.length)];
       setState(() {
-        mensagem = mensagens[randomKey];
+        mensagem = randomMessage;
       });
     } else {
       setState(() {
         mensagem = "Nenhuma mensagem encontrada.";
       });
     }
+  } else {
+    setState(() {
+      mensagem = "Nenhuma mensagem encontrada.";
+    });
   }
+}
 
   @override
   Widget build(BuildContext context) {
