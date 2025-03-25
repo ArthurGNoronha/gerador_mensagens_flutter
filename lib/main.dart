@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'home_page.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'dart:async';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -15,7 +17,10 @@ void main() async {
       databaseURL: "https://mensagensmotivacionaisflutter-default-rtdb.firebaseio.com",
     ),
   );
-  runApp(const MyApp());
+  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
+  runZonedGuarded(() {
+    runApp(const MyApp());
+  }, FirebaseCrashlytics.instance.recordError);
 }
 
 class MyApp extends StatelessWidget {
